@@ -1668,3 +1668,72 @@ function dedupe(repos) {
   return [...map.values()];
 }
 
+/* ── Entry point ── */
+async function loadProjects(observer) {
+  rvObs = observer;
+  const grid = document.getElementById('projGrid');
+
+  try {
+    const results = await Promise.allSettled(USERS.map(fetchUserRepos));
+    let combined = [];
+    results.forEach(r => { if (r.status === 'fulfilled') combined.push(...r.value); });
+    if (!combined.length) throw new Error('Nenhum repo carregado');
+
+    allRepos = dedupe(combined).sort((a, b) => scoreRepo(b) - scoreRepo(a));
+    grid.innerHTML = '';
+    buildFilterBar(grid);
+    renderGrid(allRepos, grid);
+
+  } catch (err) {
+    console.warn('GitHub fetch falhou, usando fallback.', err);
+    allRepos = FALLBACK.map(r => ({ ...r, _owner: 'HSaimon' }));
+    grid.innerHTML = '';
+    buildFilterBar(grid);
+    renderGrid(allRepos, grid);
+  }
+}
+
+/* ===========================
+   CONTACT FORM
+   =========================== */
+
+const SUCCESS_DURATION_MS = 3000;
+
+function initContactForm() {
+  const form = document.getElementById('ctForm');
+  if (!form) return;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const btn = form.querySelector('.f-submit');
+    const originalText = btn.textContent;
+
+    btn.textContent = '✓ Mensagem enviada!';
+    btn.style.background = '#16a34a';
+    btn.style.color = '#ffffff';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      form.reset();
+    }, SUCCESS_DURATION_MS);
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+  const rvObserver = createRevealObserver();
+  initTimelineTabs();
+  renderSkills(rvObserver);
+  loadProjects(rvObserver);
+  initContactForm();
+});
+
+</script>
+</body>
+</html>
