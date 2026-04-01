@@ -1,0 +1,30 @@
+/* ===========================
+   THEME TOGGLE BUTTON
+   =========================== */
+
+#themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+#themeToggle:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent2);
+  transform: rotate(12deg) scale(1.08);
+}
+
+#themeToggle svg {
+  transition: transform 0.35s ease;
+  display: block;
+}

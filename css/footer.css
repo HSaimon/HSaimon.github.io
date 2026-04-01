@@ -1,0 +1,37 @@
+/* ===========================
+   FOOTER
+   =========================== */
+footer {
+  background: var(--footer-bg);
+  border-top: 1px solid rgba(255,215,0,0.15);
+  padding: 2.2rem 2rem;
+}
+
+.ft-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ft-logo {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #FFFFFF;
+}
+.ft-logo span { color: var(--accent); }
+
+.ft-copy { font-size: 0.78rem; color: var(--footer-text); }
+
+.ft-links { display: flex; gap: 1.5rem; }
+.ft-links a {
+  color: var(--footer-text);
+  text-decoration: none;
+  font-size: 0.78rem;
+  transition: color 0.2s;
+}
+.ft-links a:hover { color: var(--accent); }

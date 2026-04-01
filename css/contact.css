@@ -1,0 +1,94 @@
+/* ===========================
+   CONTACT
+   =========================== */
+#contact { background: var(--bg); }
+
+.ct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.ct-links { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
+
+.ct-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.3rem;
+  background: var(--bg2);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.ct-link:hover {
+  border-color: rgba(255,215,0,0.4);
+  transform: translateX(5px);
+  background: var(--bg3);
+}
+
+.ct-icon {
+  width: 40px; height: 40px;
+  border-radius: 9px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(255,215,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.ct-txt strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.1rem;
+}
+.ct-txt span { font-size: 0.76rem; color: var(--muted); }
+
+/* Form */
+.ct-form { display: flex; flex-direction: column; gap: 1rem; }
+
+.f-grp { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.f-grp label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.f-grp input, .f-grp textarea {
+  background: var(--bg2);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+  outline: none;
+  resize: none;
+}
+.f-grp input:focus, .f-grp textarea:focus { border-color: var(--accent2); }
+.f-grp textarea { min-height: 115px; }
+
+.f-submit {
+  background: var(--accent);
+  color: #111111;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  align-self: flex-start;
+}
+.f-submit:hover { opacity: 0.85; transform: translateY(-2px); }

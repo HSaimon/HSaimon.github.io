@@ -1,0 +1,39 @@
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 60px;
+    background: var(--nav-mobile-bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    font-size: 1.2rem;
+  }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-visual { display: none; }
+  .hero-desc, .hero-btns { margin-left: auto; margin-right: auto; }
+  .hero-btns { justify-content: center; }
+
+  .about-grid,
+  .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+  .proj-head { flex-direction: column; align-items: flex-start; }
+
+  .ft-inner { flex-direction: column; text-align: center; }
+
+  section { padding: 4rem 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-stats { grid-template-columns: 1fr; }
+  .sk-grid { grid-template-columns: repeat(2, 1fr); }
+  .proj-grid { grid-template-columns: 1fr; }
+}
