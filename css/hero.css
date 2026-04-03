@@ -86,11 +86,16 @@
 }
 
 .hero-desc {
-  color: var(--muted);
-  font-size: 1rem;
-  max-width: 480px;
-  line-height: 1.85;
+  color: var(--muted); 
+  font-size: 1.5rem; 
+  max-width: 650px;
+  line-height: 1.6; 
   margin-bottom: 2.5rem;
+}
+
+.hero-desc strong {
+  color: var(--text); 
+  font-weight: 600; 
 }
 
 /* Buttons */
@@ -134,36 +139,77 @@
   background: var(--accent-glow);
 }
 
-/* Stats */
+/* ===========================
+   STATS - CARDS E NÚMEROS
+   =========================== */
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
   margin-top: 3.5rem;
 }
+
 .stat {
   padding: 1.1rem;
-  background: var(--bg2);
-  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 12px;
   text-align: center;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
+
 .stat-num {
   font-family: var(--font-head);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--accent2);
   line-height: 1;
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.plus-sign {
+  color: var(--accent2); /* Sinal de + amarelo fixo em qualquer tema */
+  margin-left: 2px;
+}
+
 .stat-label {
   font-size: 0.72rem;
-  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
-/* Visual / Avatar */
+/* --- MODO CLARO --- */
+[data-theme="light"] .stat {
+  background: var(--bg2); 
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .stat-num {
+  color: #666666; /* Números em Cinza Escuro no modo claro */
+}
+
+[data-theme="light"] .stat-label {
+  color: var(--muted); /* Legenda cinza */
+}
+
+/* --- MODO ESCURO --- */
+[data-theme="dark"] .stat {
+  background: var(--bg2); 
+  border: 1px solid var(--card-border);
+}
+
+[data-theme="dark"] .stat-num {
+  color: #FFFFFF; /* Números brancos no modo escuro para dar contraste */
+}
+
+[data-theme="dark"] .stat-label {
+  color: var(--muted); /* Legenda cinza claro */
+}
+
+
+/* ===========================
+   VISUAL / AVATAR
+   =========================== */
 .hero-visual { display: flex; justify-content: center; align-items: center; }
 
 .avatar-wrap { position: relative; width: 320px; height: 320px; }
