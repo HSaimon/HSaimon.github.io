@@ -201,6 +201,15 @@
   color: var(--accent2);
 }
 
+.hero-line {
+  width: 96px;           
+  height: 4px;           
+  background-color: #FFC107; 
+  border-radius: 99px;  
+  margin-top: 16px;     
+  margin-bottom: 24px;   
+}
+
 /* Floating badges */
 .float-badge {
   position: absolute;
