@@ -73,5 +73,14 @@
   color: var(--text);
   margin-bottom: 0.1rem;
 }
-.tl-org { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.55rem; }
-.tl-desc { font-size: 0.865rem; color: var(--muted); line-height: 1.75; }
+.tl-org { 
+  font-size: 0.82rem; 
+  color: var(--muted); 
+  margin-bottom: 0.55rem; 
+}
+
+.tl-desc { 
+  font-size: 1.03rem; 
+  color: var(--muted); 
+  line-height: 1.2; 
+}
