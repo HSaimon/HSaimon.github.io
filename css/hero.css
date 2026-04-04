@@ -168,12 +168,12 @@
 }
 
 .plus-sign {
-  color: var(--accent2); /* Sinal de + amarelo fixo em qualquer tema */
+  color: var(--accent2); 
   margin-left: 2px;
 }
 
 .stat-label {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -185,11 +185,11 @@
 }
 
 [data-theme="light"] .stat-num {
-  color: #666666; /* Números em Cinza Escuro no modo claro */
+  color: #252525; 
 }
 
 [data-theme="light"] .stat-label {
-  color: var(--muted); /* Legenda cinza */
+  color: var(--muted); 
 }
 
 /* --- MODO ESCURO --- */
@@ -199,11 +199,11 @@
 }
 
 [data-theme="dark"] .stat-num {
-  color: #FFFFFF; /* Números brancos no modo escuro para dar contraste */
+  color: #FFFFFF; /
 }
 
 [data-theme="dark"] .stat-label {
-  color: var(--muted); /* Legenda cinza claro */
+  color: var(--muted); 
 }
 
 

@@ -6,12 +6,10 @@
   <meta name="description" content="Hítalon Saimon — Desenvolvedor de Software, apaixonado por Java, Python, Spring Boot e soluções inovadoras." />
   <title>Hítalon Saimon — Dev Portfolio</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <!-- Stylesheets (order matters) -->
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/sections.css" />
   <link rel="stylesheet" href="css/nav.css" />
@@ -23,18 +21,16 @@
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/responsive.css" />
-  <!-- Anti-flash: apply saved theme before first paint -->
   <script>
     (function(){
       var t = localStorage.getItem('hs-theme');
-      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', t);
+      if (!t) t = globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
     })();
   </script>
 </head>
 <body>
 
-<!-- ===================== NAV ===================== -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">Hítalon <span>Saimon</span></a>
   <ul class="nav-links" id="navLinks">
@@ -51,24 +47,21 @@
   </div>
 </nav>
 
-<!-- ===================== HERO ===================== -->
 <section id="hero">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="hero-grid">
-    <!-- Left column -->
     <div>
       <div class="hero-tag">Bem-vindo ao meu portfólio</div>
       <h1 class="hero-name">
         Desenvolvedor<br><span class="last">Full Stack</span>
       </h1>
-      <!-- <p class="hero-title">Desenvolvedor de Software</p> -->
       <div class="hero-line"></div>
       <p class="hero-desc">
         Apaixonado por tecnologia e por traduzir necessidades complexas em <strong>linhas de código</strong>. 
         Aplico minha experiência para desenvolver soluções mais <strong>intuitivas e resilientes</strong>. 
         Tenho experiência prática com <strong>linguagens modernas</strong>, além de uma base sólida em 
-        <strong>arquitetura de dados</strong>  e ferramentas de automação como <strong>IoT</strong>. 
+        <strong>arquitetura de dados</strong> e ferramentas de automação como <strong>IoT</strong>. 
         Sou movido pelo desafio de criar sistemas que não apenas funcionem, mas que <strong>otimizem processos e gerem valor</strong>.
       </p>
       <div class="hero-btns">
@@ -97,52 +90,46 @@
       <div class="hero-stats">
         <div class="stat rv">
           <div class="stat-num">18<span class="plus-sign">+</span></div>
-          <div class="stat-label">Repositórios</div>
+          <div class="stat-label"><strong>Projetos</strong></div>
         </div>
         <div class="stat rv" style="transition-delay:.1s">
           <div class="stat-num">10<span class="plus-sign">+</span></div>
-          <div class="stat-label">Tecnologias</div>
+          <div class="stat-label"><strong>Tecnologias</strong></div>
         </div>
         <div class="stat rv" style="transition-delay:.2s">
-          <div class="stat-num">2<span class="plus-sign">+</span></div>
-          <div class="stat-label">Anos de Experiência</div>
+          <div class="stat-num">4<span class="plus-sign">+</span></div>
+          <div class="stat-label"><strong>Anos de Experiência</strong></div>
         </div>
       </div>
     </div>
 
-    <!-- Right column: avatar -->
     <div class="hero-visual">
       <div class="avatar-wrap">
         <div class="avatar-ring"></div>
         <div class="avatar">HS</div>
         <div class="float-badge badge1">☕ Java &amp; Spring Boot</div>
-        <div class="float-badge badge2">🐍 Python &amp; Power BI</div>
+        <div class="float-badge badge2">🐍 Python &amp; React</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== ABOUT ===================== -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
-      <!-- Bio -->
       <div class="rv">
         <div class="s-tag">Sobre mim</div>
-        <h2 class="s-title">Olá, sou<br>Hítalon Saimon</h2>
+        <h2 class="s-title"><span style="color: var(--text);">Olá, sou</span><br><span style="color: var(--accent2);">Hítalon Saimon</span></h2>
+        
         <div class="about-text">
           <p>
-            Sou um desenvolvedor apaixonado por tecnologia com uma trajetória marcada pela evolução contínua. 
-            Com sólida base técnica iniciada no <strong>SENAI</strong> e atualmente graduando em 
-            <strong>Engenharia de Software pela UniAmérica</strong>, acumulo <strong>4 anos de experiência prática</strong> 
-            como <strong>Desenvolvedor Full Stack</strong>.
+            Sou um desenvolvedor apaixonado por tecnologia com uma trajetória marcada pela evolução contínua. Com sólida base técnica iniciada no <strong>SENAI</strong> e atualmente graduando em <strong>Engenharia de Software pela UniAmérica</strong>, acumulo <strong>4 anos de experiência prática</strong> como Desenvolvedor Full Stack.
           </p>
           <p>
-            Meu diferencial é a visão ponta a ponta: participo desde o planejamento e criação de <strong>interfaces dinâmicas, performáticas e escaláveis</strong>, 
-            dominando tecnologias modernas que permitem a entrega de <strong>soluções robustas, elegantes e centradas no usuário</strong>.
-          </p>        
+            Meu foco principal reside na criação de <strong>interfaces dinâmicas, performáticas e escaláveis</strong>, dominando tecnologias modernas que permitem uma entrega completa. Meu diferencial é essa <strong>visão ponta a ponta</strong>: participo ativamente desde o planejamento até o deploy final, utilizando minha trajetória para traduzir requisitos complexos em <strong>soluções robustas, elegantes e estritamente centradas na experiência do usuário</strong>.
+          </p>
         </div>
-        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem">
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2.2rem">
           <a href="https://www.linkedin.com/in/h%C3%ADtalon-saimon-5aa8b9311/"
              target="_blank" rel="noopener"
              class="btn-primary" style="font-size:0.82rem;padding:0.65rem 1.4rem">LinkedIn →</a>
@@ -152,7 +139,6 @@
         </div>
       </div>
 
-      <!-- Timeline -->
       <div class="rv" style="transition-delay:.15s">
         <div class="tl-tabs">
           <button class="tl-tab active" data-tab="ed">Formação</button>
@@ -160,54 +146,59 @@
           <button class="tl-tab" data-tab="cert">Certificações</button>
         </div>
 
-        <!-- Education -->
         <div class="tl-items active" id="ed">
           <div class="tl-item">
-            <div class="tl-date">2025 — Atual</div>
+            <div class="tl-date">Em andamento</div>
             <div class="tl-role">Engenharia de Software</div>
             <div class="tl-org">UniAmérica — EAD</div>
-            <div class="tl-desc">Formação focada em competências práticas de mercado, abrangendo 
-              <strong>Arquitetura de Software</strong>, <strong>Programação Orientada a Objetos (POO)</strong>, <strong>Estruturas de Dados</strong> e gerenciamento de <strong>Bancos de Dados Relacionais</strong>. O curso é estruturado através de metodologias ativas, com foco direto na resolução de <strong>projetos práticos e reais</strong>.</div>
+            <div class="tl-desc">
+              Formação focada em competências práticas de mercado, abrangendo <strong>Arquitetura de Software</strong>, <strong>Programação Orientada a Objetos (POO)</strong>, <strong>Estruturas de Dados</strong> e gerenciamento de <strong>Bancos de Dados Relacionais</strong>. O curso é estruturado através de metodologias ativas, com foco direto na resolução de <strong>projetos práticos e reais</strong>.
+            </div>
           </div>
           <div class="tl-item">
-            <div class="tl-date">2023 — 2025</div>
+            <div class="tl-date">Concluído</div>
             <div class="tl-role">Técnico em Desenvolvimento de Sistemas</div>
             <div class="tl-org">SENAI — Feira de Santana, BA</div>
-            <div class="tl-desc">Formação técnica sólida voltada para o ciclo de vida de aplicações, incluindo <strong>Lógica de Programação</strong>, <strong>Desenvolvimento Web (Front-End e Back-End)</strong> e <strong>Modelagem de Dados</strong>. O aprendizado foi consolidado através de vivência prática em laboratório, preparando para o desenvolvimento de soluções computacionais eficientes e <strong>alinhadas às demandas da indústria</strong>.</div>
+            <div class="tl-desc">
+              Formação técnica sólida voltada para o ciclo de vida de aplicações, incluindo <strong>Lógica de Programação</strong>, <strong>Desenvolvimento Web (Front-End e Back-End)</strong> e <strong>Modelagem de Dados</strong>. O aprendizado foi consolidado através de vivência prática em laboratório, preparando para o desenvolvimento de soluções computacionais eficientes e <strong>alinhadas às demandas da indústria</strong>.
+            </div>
           </div>
         </div>
 
-        <!-- Experience -->
         <div class="tl-items" id="ex">
           <div class="tl-item">
-            <div class="tl-date">2022 — Atual</div>
-            <div class="tl-role">Tutor de Sistemas</div>
-            <div class="tl-org">Tel Contact Center</div>
-            <div class="tl-desc">Responsável pela capacitação técnica, atuando na <strong>transmissão de conhecimentos sobre sistemas internos e processos</strong>. Meu papel consistia em traduzir requisitos técnicos complexos para uma linguagem acessível, garantindo a eficiência das equipes e a <strong>otimização do suporte de alto valor</strong>.</div>
+            <div class="tl-date">2023 — Atual</div>
+            <div class="tl-role">Instrutor de Sistemas</div>
+            <div class="tl-org">Tel Telemática</div>
+            <div class="tl-desc">
+              Responsável pela capacitação técnica de colaboradores, atuando na <strong>transmissão de conhecimentos sobre sistemas internos e processos operacionais</strong>. Meu papel consistia em traduzir requisitos técnicos complexos para uma linguagem acessível, garantindo a eficiência das equipes e a <strong>otimização do suporte de alto valor</strong>.
+            </div>
           </div>
           <div class="tl-item">
-            <div class="tl-date">2021 — 2022</div>
+            <div class="tl-date">2022 — 2023</div>
             <div class="tl-role">Operador de Suporte (Sistemas)</div>
-            <div class="tl-org">Tel Contact Center</div>
-            <div class="tl-desc">Atuação focada no <strong>atendimento técnico especializado</strong> e na resolução de incidentes críticos em sistemas corporativos. Responsável por garantir a continuidade dos processos através da <strong>análise de falhas, monitoramento de performance e suporte direto ao usuário final</strong>.</div>
+            <div class="tl-org">Tel Telemática</div>
+            <div class="tl-desc">
+              Atuação focada no <strong>atendimento técnico especializado</strong> e na resolução de incidentes críticos em sistemas corporativos. Responsável por garantir a continuidade dos processos através da <strong>análise de falhas, monitoramento de performance e suporte direto ao usuário final</strong>. Esta experiência consolidou minha <strong>visão analítica e resiliência</strong>.
+            </div>
           </div>
           <div class="tl-item">
             <div class="tl-date">2023 — Atual</div>
-            <div class="tl-role">Desenvolverdor Full Stack</div>
+            <div class="tl-role">Desenvolvedor Full Stack </div>
             <div class="tl-org">Freelancer</div>
-            <div class="tl-desc">Foco em transformar ideias de clientes em produtos escaláveis, garantindo <strong>interfaces responsivas e performance otimizada</strong>. Essa experiência reforça minha capacidade de autogestão e entrega de valor em prazos competitivos.</div>
+            <div class="tl-desc">
+              Atuação no desenvolvimento de soluções personalizadas sob demanda, abrangendo desde <strong>aplicações web modernas com React e Next.js</strong> até <strong>aplicativos móveis com Flutter</strong>. Gerenciamento de todo o fluxo de desenvolvimento, incluindo arquitetura de banco de dados, integração com <strong>Firebase/Cloud</strong> e deploy. Foco em transformar ideias em produtos escaláveis, garantindo <strong>interfaces responsivas, código limpo e performance otimizada</strong>.
+            </div>
           </div>
         </div>
-
-        <!-- Certificações -->
+        
         <div class="tl-items" id="cert">
           <div class="tl-item">
             <div class="tl-date">2026</div>
             <div class="tl-role">Java Completo e POO + Projetos</div>
             <div class="tl-org">Udemy</div>
             <div class="tl-desc">
-              Especialização aprofundada em <strong>Java e Programação Orientada a Objetos (POO)</strong>. O curso abrange desde a lógica avançada até o desenvolvimento de APIs utilizando 
-              <strong>Spring Boot, JPA/Hibernate e integração com bancos de dados relacionais</strong>.
+              Especialização focada em competências práticas de back-end, abrangendo <strong>Java</strong>, <strong>Programação Orientada a Objetos (POO)</strong> e <strong>lógica avançada</strong>. O curso é estruturado para o mercado, com foco direto no desenvolvimento de APIs utilizando <strong>Spring Boot, JPA/Hibernate e bancos de dados relacionais</strong>.
             </div>
           </div>
           <div class="tl-item">
@@ -215,27 +206,23 @@
             <div class="tl-role">Ferramentas e Aplicações da IA</div>
             <div class="tl-org">Descomplica</div>
             <div class="tl-desc">
-              Exploração prática de ferramentas de <strong>Inteligência Artificial Generativa</strong> e sua aplicação no aumento de produtividade. Foco em <strong>automação de tarefas</strong>, análise de dados e integração de modelos de IA no fluxo de trabalho técnico e criativo.
+              Capacitação focada no aumento de produtividade tecnológica, abrangendo ferramentas de <strong>Inteligência Artificial Generativa</strong> e <strong>análise de dados</strong>. O aprendizado é estruturado para o dia a dia, com foco direto na <strong>automação de tarefas</strong> e integração de modelos no fluxo de trabalho criativo e técnico.
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-date">2025</div>
-            <div class="tl-role">Banco de Dados</div>
+            <div class="tl-role">Banco de Dados (38 horas)</div>
             <div class="tl-org">Fundação Bradesco</div>
             <div class="tl-desc">
-              Capacitação focada em <strong>modelagem de dados</strong>, conceitos de 
-              <strong>normalização</strong> e manipulação de <strong>linguagem SQL</strong>. 
-              Aborda desde a criação de entidades e relacionamentos até a implementação e consulta 
-              em bancos de dados relacionais.
+              Formação técnica focada na estruturação da informação, abrangendo <strong>modelagem de dados</strong>, <strong>normalização</strong> e manipulação de <strong>linguagem SQL</strong>. O curso é estruturado da conceituação à prática, com foco direto na implementação e consulta em <strong>bancos de dados relacionais</strong>.
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-date">2025</div>
-            <div class="tl-role">Linguagem de Programação Python</div>
+            <div class="tl-role">Linguagem Python (53 horas)</div>
             <div class="tl-org">Fundação Bradesco</div>
             <div class="tl-desc">
-              Desenvolvimento de competências em <strong>Python</strong>, abrangendo desde a sintaxe e estruturas de dados até a manipulação de arquivos e <strong>lógica de programação avançada</strong>. Foco na criação de scripts eficientes e fundamentos para 
-              <strong>automação e análise de dados</strong>.
+              Formação focada na criação de soluções eficientes, abrangendo <strong>sintaxe Python</strong>, <strong>estruturas de dados</strong> e <strong>lógica de programação avançada</strong>. O curso é estruturado na resolução de problemas, com foco direto no desenvolvimento de scripts para <strong>automação e análise de dados</strong>.
             </div>
           </div>
         </div>
@@ -244,7 +231,6 @@
   </div>
 </section>
 
-<!-- ===================== PROJECTS ===================== -->
 <section id="projects">
   <div class="container">
     <div class="proj-head">
@@ -264,43 +250,42 @@
   </div>
 </section>
 
-<!-- ===================== SKILLS ===================== -->
 <section id="skills">
   <div class="container">
     <div class="s-tag rv">Habilidades</div>
     <h2 class="s-title rv">Tecnologias</h2>
     <p class="s-sub rv">Ferramentas e linguagens utilizadas no desenvolvimento de soluções robustas e eficientes.</p>
+    
     <div class="sk-grid" id="skGrid"></div>
+    
+    <p class="sk-footer-msg rv" style="transition-delay: .5s">Aprendendo<span class="animated-dots"><span>.</span><span>.</span><span>.</span></span></p>
   </div>
 </section>
 
-<!-- ===================== CONTACT ===================== -->
 <section id="contact">
   <div class="container">
     <div class="ct-grid">
-      <!-- Info -->
       <div class="rv">
         <div class="s-tag">Contato</div>
         <h2 class="s-title">Vamos<br>conversar?</h2>
         <p class="s-sub">Aberto a oportunidades, colaborações e projetos desafiadores.</p>
         <div class="ct-links">
-          <a href="https://www.linkedin.com/in/h%C3%ADtalon-saimon-5aa8b9311/"
-             target="_blank" rel="noopener" class="ct-link">
-            <div class="ct-icon">💼</div>
+          <a href="https://www.linkedin.com/in/h%C3%ADtalon-saimon-5aa8b9311/" target="_blank" rel="noopener" class="ct-link">
+            <div class="ct-icon"><img src="https://api.iconify.design/logos:linkedin-icon.svg" width="24" height="24" alt="LinkedIn"></div>
             <div class="ct-txt">
               <strong>LinkedIn</strong>
               <span>linkedin.com/in/hítalon-saimon</span>
             </div>
           </a>
           <a href="https://github.com/H-Saimon" target="_blank" rel="noopener" class="ct-link">
-            <div class="ct-icon">🐙</div>
+            <div class="ct-icon"><img src="https://api.iconify.design/mdi:github.svg" class="gh-icon" width="28" height="28" alt="GitHub"></div>
             <div class="ct-txt">
               <strong>GitHub</strong>
               <span>github.com/H-Saimon</span>
             </div>
           </a>
           <a href="mailto:dev.hsaimon@gmail.com" class="ct-link">
-            <div class="ct-icon">✉️</div>
+            <div class="ct-icon"><img src="https://api.iconify.design/logos:google-gmail.svg" width="24" height="24" alt="Email"></div>
             <div class="ct-txt">
               <strong>Email</strong>
               <span>dev.hsaimon@gmail.com</span>
@@ -309,7 +294,6 @@
         </div>
       </div>
 
-      <!-- Form -->
       <div class="rv" style="transition-delay:.15s">
         <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;margin-bottom:1.4rem">
           Enviar mensagem
@@ -338,22 +322,25 @@
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="ft-inner">
     <div class="ft-logo">Hítalon <span>Saimon</span></div>
     <div class="ft-copy">© 2025 Hítalon Saimon — Feira de Santana, BA 🇧🇷</div>
     <div class="ft-links">
-      <a href="https://github.com/H-Saimon" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/h%C3%ADtalon-saimon-5aa8b9311/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/h%C3%ADtalon-saimon-5aa8b9311/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="https://api.iconify.design/logos:linkedin-icon.svg" alt="LinkedIn" width="28" height="28" />
+      </a>
+      <a href="https://github.com/H-Saimon" target="_blank" rel="noopener" aria-label="GitHub">
+        <img src="https://api.iconify.design/mdi:github.svg" alt="GitHub" class="gh-icon" width="32" height="32" />
+      </a>
+      <a href="mailto:dev.hsaimon@gmail.com" aria-label="Email">
+        <img src="https://api.iconify.design/logos:google-gmail.svg" alt="Email" width="28" height="28" />
+      </a>
     </div>
   </div>
 </footer>
 
-<!-- Scripts -->
-<!-- nav.js is a plain script (no exports needed) -->
 <script src="js/nav.js"></script>
-<!-- main.js uses ES modules for all other features -->
 <script type="module" src="js/main.js"></script>
 
 </body>

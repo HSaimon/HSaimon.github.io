@@ -14,7 +14,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .ft-logo {
@@ -27,11 +27,18 @@ footer {
 
 .ft-copy { font-size: 0.78rem; color: var(--footer-text); }
 
-.ft-links { display: flex; gap: 1.5rem; }
-.ft-links a {
-  color: var(--footer-text);
-  text-decoration: none;
-  font-size: 0.78rem;
-  transition: color 0.2s;
+.ft-links { 
+  display: flex; 
+  gap: 1.2rem; 
+  align-items: center; 
 }
-.ft-links a:hover { color: var(--accent); }
+
+.ft-links a {
+  display: flex;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.ft-links a:hover { 
+  transform: translateY(-4px); 
+  filter: brightness(1.2);
+}

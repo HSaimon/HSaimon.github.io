@@ -42,4 +42,6 @@ section { padding: 6rem 2rem; }
 
 /* Scroll reveal */
 .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.rv.vis { opacity: 1; transform: none; }
+.rv.vis { opacity: 0.7; transform: none; }
+
+
