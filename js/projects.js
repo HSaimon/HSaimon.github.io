@@ -1,83 +1,57 @@
 /* ===========================
-   PROJECTS — Dual GitHub Loader
-   HSaimon + H-Saimon | Filtro por Linguagem | Destaques
-   Descrições geradas por análise real dos repositórios via GitHub API
+   PROJECTS — Dual GitHub Loader & Curated Highlights
+   Filtros: Destaques (Top 10) | Todos | Por Linguagem
    =========================== */
 
+// As contas onde vamos buscar os projetos, mas unificadas visualmente
 const USERS = ['HSaimon', 'H-Saimon'];
 
-const ICONS = ['⚙️','🖥️','📦','🔧','🌐','🎯','💡','🛠️','🔬','📱','🔗','🗃️','🎮','🐍','☕','📊','🤖','🏗️','🧩','✈️','🍔','🎓','🔌','🧪'];
+// Exclui apenas os ficheiros README de perfil
+const EXCLUDE = new Set(['HSaimon', 'H-Saimon']);
+
+const ICONS = ['⚙️','🖥️','📦','🔧','🌐','🎯','💡','🛠️','🔬','📱','🔗','🗃️','🎮','🐍','☕','📊','🤖','🏗️','🧩','✈️'];
 
 /* ──────────────────────────────────────────────────────────────
-   DESCRIÇÕES CURADAS
-   Baseadas na análise real: nome, linguagem, tamanho (kb),
-   issues abertas, homepage, description oficial e contexto do perfil.
+   1. RANKING TOP 10 E DESCRIÇÕES PROFISSIONAIS
    ────────────────────────────────────────────────────────────── */
-const CURATED_DESC = {
-
-  /* ── JAVA ── */
-  'Passageiro-Registro':
-    'Sistema Java de cadastro e gerenciamento de passageiros. Permite registrar, listar e controlar dados de viajantes com persistência em banco de dados. Projeto com issues ativas indicando desenvolvimento contínuo.',
-
-  'Aeroporto-':
-    'Aplicação Java orientada a objetos que modela o fluxo operacional de um aeroporto: gestão de voos, check-in de passageiros, controle de portões e processamento de embarque.',
-
-  'lanchonete':
-    'Sistema de ponto de venda (PDV) em Java para lanchonetes. Gerencia cardápio, pedidos de clientes, cálculo de valores e controle de estoque básico, aplicando conceitos de POO e coleções.',
-
-  'Test-Uni':
-    'Projeto Java focado em testes unitários com JUnit. Valida regras de negócio, testa métodos isolados e demonstra boas práticas de cobertura de código no desenvolvimento orientado a testes (TDD).',
-
-  'Ativ-Imagem':
-    'Exercício Java de manipulação de imagens usando a API de I/O e classes gráficas. Aplica leitura, processamento e escrita de arquivos de imagem com orientação a objetos.',
-
-  'Operador-DDD':
-    'Aplicação Java que identifica a operadora telefônica de um número pelo código DDD. Utiliza estruturas de dados e lógica condicional para classificar operadoras por região do Brasil.',
-
-  'Quest-o-8':
-    'Projeto Java robusto (4.8 MB com assets) que resolve a questão 8 de um exercício de programação. O tamanho expressivo indica uso de bibliotecas gráficas ou recursos multimídia integrados à solução.',
-
-  /* ── GDSCRIPT / GODOT ── */
-  'Jogo-da-Dengue_SENAI':
-    'Jogo educativo 2D desenvolvido no Godot Engine com GDScript para o SENAI. O projeto (5.6 MB) inclui sprites, animações, sons e mecânicas de gameplay para conscientizar sobre a prevenção da dengue.',
-
-  'Teste-Jogo':
-    'Protótipo de jogo desenvolvido com Godot Engine para experimentação de mecânicas 2D: física de personagem, colisões, sistemas de pontuação e testes de gameplay antes do desenvolvimento final.',
-
-  /* ── HTML / WEB ── */
-  'HSaimon.github.io':
-    'Portfólio pessoal publicado via GitHub Pages (84 MB com todos os assets). Site completo com seções de projetos, habilidades, experiência e contato, refletindo a evolução profissional como desenvolvedor.',
-
-  'SAEP---2021':
-    'Projeto HTML desenvolvido para o SAEP 2021 (Sistema de Avaliação da Educação Profissional do SENAI). Apresentação web estruturada com conteúdo educacional e formatação para avaliação técnica.',
-
-  'portfolio-hitalon-saimon':
-    'Versão anterior do portfólio pessoal em JavaScript (84 MB), com GitHub Pages ativo. Base para a evolução do portfólio atual, demonstrando a progressão no desenvolvimento frontend.',
-
-  /* ── SEM LINGUAGEM DEFINIDA (documentos/Arduino/etc.) ── */
-  'Labirinto_Esp32':
-    'Firmware para microcontrolador ESP32 que controla um labirinto físico. Lógica embarcada em C/Arduino para leitura de sensores, tomada de decisão de rotas e acionamento de atuadores no hardware.',
-
-  'PEX---FERRAMENTA-DE-SIMULA-O-DE-ATENDIMENTO-COM-IA-':
-    'Ferramenta de simulação de atendimento com IA desenvolvida como Projeto de Extensão (PEX). Treina operadores em cenários realistas via chat ou voz, gera avaliações automáticas com feedback imediato e logs de desempenho para análise dos instrutores.',
-
-  'Sistema-de-Gest-o-de-Estoque':
-    'Sistema de gestão de estoque com foco em performance: redução de 40% no tempo de processamento de pedidos via otimização de consultas SQL, controle de entrada/saída de produtos e geração de relatórios em tempo real.',
-
+const HIGHLIGHT_RANKING = {
+  'SENAI-SITE': 100,               // 1º
+  'Labirinto_Esp32': 90,           // 2º
+  'FrontAppFitness': 80,           // 3º
+  'Jogo-da-Dengue_SENAI': 70,      // 4º
+  'HSaimon.github.io': 60,         // 5º
+  'Oficina-Análise-de-Dados': 50,  // 6º
+  'Cadastro_de_produto': 40,       // 7º
+  'Demo': 30,                      // 8º
+  'Proj3': 20,                     // 9º
+  'Calculo_Area': 10,              // 10º
+  'Teste': 10                      // Agrupado com o 10º
 };
 
-/* Repos a excluir (README de perfil) */
-const EXCLUDE = new Set(['HSaimon','H-Saimon','HSaimon.github.io']);
+const CURATED_DESC = {
+  'SENAI-SITE': 'Projeto de maior peso técnico do portfólio. TypeScript com framework web moderno. Participação em código tipado e colaborativo, elevando o nível para padrões de mercado.',
+  'Labirinto_Esp32': 'O projeto mais inovador. Firmware em C/C++ para ESP32 controlando hardware físico. Um diferencial raro que demonstra domínio em IoT e sistemas embarcados.',
+  'FrontAppFitness': 'Aplicativo de produto real com usuário final. Frontend JavaScript desenvolvido em colaboração, focado em fitness, com contexto altamente profissional.',
+  'Jogo-da-Dengue_SENAI': 'Jogo educativo 2D com Godot Engine e GDScript. Temática de saúde pública que demonstra aprendizado autodirigido além do currículo web tradicional.',
+  'HSaimon.github.io': 'A vitrine profissional. Portfólio focado em estruturação HTML/CSS limpa, sinalizando alta consciência sobre posicionamento de mercado.',
+  'Oficina-Análise-de-Dados': 'Exploração de Análise de Dados com Python. Demonstra flexibilidade e exposição a ferramentas de altíssima demanda, além da programação web.',
+  'Cadastro_de_produto': 'CRUD clássico em PHP. A base fundamental do backend, demonstrando a compreensão perfeita do ciclo: formulário → servidor → banco de dados.',
+  'Demo': 'Exercícios fundamentais de Java. Documenta a base sólida em Programação Orientada a Objetos (POO), paradigma central de arquiteturas modernas.',
+  'Proj3': 'O ponto de partida no ecossistema web com HTML e CSS. Um marco histórico da base de criação de layouts e estruturação de páginas.',
+  'Calculo_Area': 'Primeiríssimos experimentos lógicos e matemáticos em Java. Seu maior valor é narrativo: ilustra perfeitamente a evolução técnica até as stacks atuais.',
+  'Teste': 'Repositório inicial para testes de lógica de programação.'
+};
 
-/* Destaques fixos — projetos mais relevantes e completos */
-const HIGHLIGHT_NAMES = new Set([
-  'PEX---FERRAMENTA-DE-SIMULA-O-DE-ATENDIMENTO-COM-IA-',
-  'Sistema-de-Gest-o-de-Estoque',
-  'Jogo-da-Dengue_SENAI',
-  'Passageiro-Registro',
-  'Aeroporto-',
-  'Quest-o-8',
-]);
+/* Repositórios colaborativos e fixos para garantir que os Top 10 nunca faltem */
+const EXTERNAL_REPOS = [
+  { name:'SENAI-SITE', language:'TypeScript', html_url:'https://github.com/dudurtg2/SENAI-SITE', stargazers_count:0, forks_count:0, topics:['colaboração', 'framework'], updated_at:new Date().toISOString() },
+  { name:'FrontAppFitness', language:'JavaScript', html_url:'https://github.com/msantt/FrontAppFitness', stargazers_count:0, forks_count:0, topics:['produto-real'], updated_at:new Date().toISOString() },
+  { name:'Oficina-Análise-de-Dados', language:'Python', html_url:'https://github.com/H-Saimon/Oficina-Análise-de-Dados', stargazers_count:0, forks_count:0, topics:['dados'], updated_at:new Date().toISOString() },
+  { name:'Cadastro_de_produto', language:'PHP', html_url:'https://github.com/H-Saimon/Cadastro_de_produto', stargazers_count:0, forks_count:0, topics:['crud'], updated_at:new Date().toISOString() },
+  { name:'Demo', language:'Java', html_url:'https://github.com/H-Saimon/Demo', stargazers_count:0, forks_count:0, topics:['poo'], updated_at:new Date().toISOString() },
+  { name:'Proj3', language:'HTML', html_url:'https://github.com/H-Saimon/Proj3', stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
+  { name:'Calculo_Area', language:'Java', html_url:'https://github.com/H-Saimon/Calculo_Area', stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() }
+];
 
 const GH_ICON  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.31.468-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.51 11.51 0 0112 5.8a11.51 11.51 0 013.004.404c2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.604-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 21.795 24 17.298 24 12 24 5.37 18.63 0 12 0z"/></svg>`;
 const EXT_ICON = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
@@ -85,6 +59,7 @@ const EXT_ICON = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" st
 const LANG_COLORS = {
   'Java':       { bg:'rgba(234,84,85,0.12)',  color:'#e05252', border:'rgba(234,84,85,0.3)' },
   'Python':     { bg:'rgba(55,148,75,0.12)',  color:'#2da44e', border:'rgba(55,148,75,0.3)' },
+  'C#':         { bg:'rgba(155,79,150,0.12)', color:'#9b4f96', border:'rgba(155,79,150,0.3)' },
   'GDScript':   { bg:'rgba(72,149,239,0.12)', color:'#478def', border:'rgba(72,149,239,0.3)' },
   'TypeScript': { bg:'rgba(49,120,198,0.12)', color:'#3178c6', border:'rgba(49,120,198,0.3)' },
   'JavaScript': { bg:'rgba(247,197,14,0.12)', color:'#b8860b', border:'rgba(247,197,14,0.3)' },
@@ -95,49 +70,40 @@ const LANG_COLORS = {
 };
 function langStyle(l) { return LANG_COLORS[l] || LANG_COLORS.default; }
 
+/* ── Sistema de Pontuação ── */
 function scoreRepo(r) {
+  // Se estiver no Top 10, ganha prioridade máxima baseada no ranking
+  if (HIGHLIGHT_RANKING[r.name] !== undefined) {
+    return 1000 + HIGHLIGHT_RANKING[r.name]; 
+  }
+  // Repositórios normais
   return (r.stargazers_count * 3) + (r.forks_count * 1) +
-    (HIGHLIGHT_NAMES.has(r.name) ? 10 : 0) +
     (new Date(r.updated_at) > new Date(Date.now() - 120*24*3600*1000) ? 3 : 0);
 }
 
 let allRepos = [];
 let rvObs    = null;
 
-/* ── Fallback quando a API falha ── */
-const FALLBACK = [
-  { name:'PEX---FERRAMENTA-DE-SIMULA-O-DE-ATENDIMENTO-COM-IA-', language:null,       html_url:'https://github.com/HSaimon/PEX---FERRAMENTA-DE-SIMULA-O-DE-ATENDIMENTO-COM-IA-', stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Sistema-de-Gest-o-de-Estoque',  language:null,                             html_url:'https://github.com/HSaimon/Sistema-de-Gest-o-de-Estoque',                          stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Jogo-da-Dengue_SENAI',          language:'GDScript',                       html_url:'https://github.com/HSaimon/Jogo-da-Dengue_SENAI',                                  stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Passageiro-Registro',           language:'Java',                           html_url:'https://github.com/HSaimon/Passageiro-Registro',                                   stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Aeroporto-',                    language:'Java',                           html_url:'https://github.com/HSaimon/Aeroporto-',                                            stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'lanchonete',                    language:'Java',                           html_url:'https://github.com/HSaimon/lanchonete',                                            stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Quest-o-8',                     language:'Java',                           html_url:'https://github.com/HSaimon/Quest-o-8',                                             stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Labirinto_Esp32',               language:null,                             html_url:'https://github.com/HSaimon/Labirinto_Esp32',                                       stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Operador-DDD',                  language:'Java',                           html_url:'https://github.com/HSaimon/Operador-DDD',                                          stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Test-Uni',                      language:'Java',                           html_url:'https://github.com/HSaimon/Test-Uni',                                              stargazers_count:1, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Ativ-Imagem',                   language:'Java',                           html_url:'https://github.com/HSaimon/Ativ-Imagem',                                           stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Teste-Jogo',                    language:'GDScript',                       html_url:'https://github.com/HSaimon/Teste-Jogo',                                            stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'SAEP---2021',                   language:'HTML',                           html_url:'https://github.com/HSaimon/SAEP---2021',                                           stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-];
-
 /* ── Constrói um card ── */
 function buildCard(repo, index) {
-  const isHL  = HIGHLIGHT_NAMES.has(repo.name);
+  const isHL  = HIGHLIGHT_RANKING[repo.name] !== undefined;
   const card  = document.createElement('div');
   card.className = 'proj-card rv' + (isHL ? ' proj-highlight' : '');
-  card.style.transitionDelay = `${index * 0.06}s`;
+  card.style.transitionDelay = `${(index % 10) * 0.06}s`;
 
   const rawName     = repo.name || '';
   const displayName = rawName.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
   const desc        = CURATED_DESC[rawName] || repo.description || 'Projeto disponível no GitHub.';
-  const lang        = repo.language || '';
+  
+  // Ajuste do Labirinto
+  let lang = repo.language || '';
+  if (rawName === 'Labirinto_Esp32') lang = 'C++';
+
   const topics      = (repo.topics || []).slice(0, 3);
   const url         = repo.html_url || 'https://github.com/HSaimon';
   const demo        = repo.homepage || '';
   const stars       = repo.stargazers_count || 0;
   const forks       = repo.forks_count || 0;
-  const owner       = repo._owner || 'HSaimon';
 
   const ls      = langStyle(lang);
   const langTag = lang
@@ -146,16 +112,13 @@ function buildCard(repo, index) {
   const topTags = topics.map(t => `<span class="lang-tag">${t}</span>`).join('');
   const demoLnk = demo ? `<a href="${demo}" target="_blank" rel="noopener" class="proj-link">${EXT_ICON} Demo</a>` : '';
   const hlBadge = isHL
-    ? `<span style="position:absolute;top:-1px;right:1.1rem;font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;background:var(--accent);color:#111;padding:0.15rem 0.55rem;border-radius:0 0 6px 6px">⭐ Destaque</span>`
+    ? `<span style="position:absolute;top:-1px;right:1.1rem;font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;background:var(--accent);color:#111;padding:0.15rem 0.55rem;border-radius:0 0 6px 6px">⭐</span>`
     : '';
-
-  const ownerBadge = `<span style="font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:100px;border:1px solid;white-space:nowrap;flex-shrink:0;background:var(--accent-glow);color:#B8950A;border-color:rgba(255,215,0,0.3)">@${owner}</span>`;
 
   card.innerHTML = `
     ${hlBadge}
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem">
       <div class="proj-icon">${ICONS[index % ICONS.length]}</div>
-      ${ownerBadge}
     </div>
     <div class="proj-name">${displayName}</div>
     <div class="proj-desc">${desc}</div>
@@ -175,7 +138,7 @@ function buildCard(repo, index) {
 function renderGrid(repos, grid) {
   grid.innerHTML = '';
   if (!repos.length) {
-    grid.innerHTML = `<div class="proj-loader"><p>Nenhum repositório nesta linguagem.</p></div>`;
+    grid.innerHTML = `<div class="proj-loader"><p>Nenhum repositório encontrado.</p></div>`;
     return;
   }
   repos.forEach((repo, i) => {
@@ -189,83 +152,94 @@ function renderGrid(repos, grid) {
 function getLanguages(repos) {
   const s = new Set();
   repos.forEach(r => {
-    if (r.language) s.add(r.language);
-    else s.add('Embarcado');
+    let l = r.language;
+    if (r.name === 'Labirinto_Esp32') l = 'C++';
+    if (l) s.add(l);
   });
   return [...s].sort();
 }
 
-/* ── Aplica filtro de linguagem ── */
-function applyLangFilter(bar, grid) {
-  const langKey = bar.querySelector('[data-ft="lang"].active')?.dataset.lang || '';
+/* ── Aplica filtro ── */
+function applyFilter(bar, grid) {
+  // Por padrão carrega 'destaques'
+  const filterKey = bar.querySelector('[data-ft="lang"].active')?.dataset.lang || 'destaques';
   let filtered;
-  if (!langKey) {
+
+  if (filterKey === 'destaques') {
+    filtered = allRepos.filter(r => HIGHLIGHT_RANKING[r.name] !== undefined);
+    filtered.sort((a, b) => HIGHLIGHT_RANKING[b.name] - HIGHLIGHT_RANKING[a.name]);
+  } else if (filterKey === 'todos') {
     filtered = allRepos;
-  } else if (langKey === 'Embarcado') {
-    filtered = allRepos.filter(r => !r.language);
   } else {
-    filtered = allRepos.filter(r => r.language === langKey);
+    filtered = allRepos.filter(r => {
+      let l = r.language;
+      if (r.name === 'Labirinto_Esp32') l = 'C++';
+      return l === filterKey;
+    });
   }
   renderGrid(filtered, grid);
 }
 
-/* ── Constrói barra de filtro (só linguagem) ── */
+/* ── Constrói barra de filtro ── */
 function buildFilterBar(grid) {
   document.getElementById('projFilterBar')?.remove();
   const langs = getLanguages(allRepos);
 
   const bar = document.createElement('div');
   bar.id = 'projFilterBar';
-  bar.style.cssText = 'margin-bottom:1.8rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;';
+  bar.style.cssText = 'margin-bottom:1.8rem;display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;';
 
-  const lbl = document.createElement('span');
-  lbl.textContent = 'Linguagem:';
-  lbl.style.cssText = 'font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);flex-shrink:0;';
-  bar.appendChild(lbl);
-
-  const makeBtn = (text, lang, active) => {
+  const makeBtn = (text, key, active) => {
     const btn = document.createElement('button');
     btn.textContent = text;
     btn.dataset.ft   = 'lang';
-    btn.dataset.lang = lang;
+    btn.dataset.lang = key;
     btn.className    = 'tl-tab' + (active ? ' active' : '');
-    btn.style.cssText = 'font-size:0.73rem;padding:0.32rem 0.72rem;';
+    btn.style.cssText = 'font-size:0.75rem;padding:0.35rem 0.8rem;';
     btn.addEventListener('click', () => {
       bar.querySelectorAll('[data-ft="lang"]').forEach(b => {
         b.classList.remove('active');
         b.style.background = b.style.color = b.style.borderColor = '';
       });
       btn.classList.add('active');
-      if (lang && lang !== 'Embarcado') {
-        const ls = langStyle(lang);
+      
+      if (key !== 'destaques' && key !== 'todos') {
+        const ls = langStyle(key);
         btn.style.background  = ls.bg;
         btn.style.color       = ls.color;
         btn.style.borderColor = ls.border;
       }
-      applyLangFilter(bar, grid);
+      applyFilter(bar, grid);
     });
     return btn;
   };
 
-  bar.appendChild(makeBtn(`Todas (${allRepos.length})`, '', true));
+  // Botões Base Destaque e Todos
+  bar.appendChild(makeBtn(`⭐ Destaques`, 'destaques', true));
+  bar.appendChild(makeBtn(`Todos (${allRepos.length})`, 'todos', false));
+
+  // Botões de Linguagem (sem exibir 'Embarcado' solto)
   langs.forEach(lang => {
-    const count = lang === 'Embarcado'
-      ? allRepos.filter(r => !r.language).length
-      : allRepos.filter(r => r.language === lang).length;
-    bar.appendChild(makeBtn(`${lang} (${count})`, lang, false));
+    const count = allRepos.filter(r => {
+      let l = r.language;
+      if (r.name === 'Labirinto_Esp32') l = 'C++';
+      return l === lang;
+    }).length;
+    
+    if (count > 0) {
+      bar.appendChild(makeBtn(`${lang} (${count})`, lang, false));
+    }
   });
 
   grid.parentElement.insertBefore(bar, grid);
 }
 
-/* ── Busca repos de um usuário ── */
+/* ── Busca repos das contas via API GitHub ── */
 async function fetchUserRepos(user) {
   const res = await fetch(`https://api.github.com/users/${user}/repos?sort=updated&per_page=100`);
   if (!res.ok) throw new Error(`${user}: ${res.status}`);
   const repos = await res.json();
-  return repos
-    .filter(r => !EXCLUDE.has(r.name))
-    .map(r => ({ ...r, _owner: user }));
+  return repos.filter(r => !EXCLUDE.has(r.name));
 }
 
 /* ── Deduplicação por nome ── */
@@ -285,20 +259,23 @@ export async function loadProjects(observer) {
 
   try {
     const results = await Promise.allSettled(USERS.map(fetchUserRepos));
-    let combined = [];
+    let combined = [...EXTERNAL_REPOS]; 
+    
     results.forEach(r => { if (r.status === 'fulfilled') combined.push(...r.value); });
     if (!combined.length) throw new Error('Nenhum repo carregado');
 
     allRepos = dedupe(combined).sort((a, b) => scoreRepo(b) - scoreRepo(a));
     grid.innerHTML = '';
+    
     buildFilterBar(grid);
-    renderGrid(allRepos, grid);
+    applyFilter(document.getElementById('projFilterBar'), grid); 
 
   } catch (err) {
-    console.warn('GitHub fetch falhou, usando fallback.', err);
-    allRepos = FALLBACK.map(r => ({ ...r, _owner: 'HSaimon' }));
+    console.warn('GitHub fetch falhou, usando apenas os projetos fixos.', err);
+    allRepos = [...EXTERNAL_REPOS];
     grid.innerHTML = '';
+    
     buildFilterBar(grid);
-    renderGrid(allRepos, grid);
+    applyFilter(document.getElementById('projFilterBar'), grid);
   }
 }

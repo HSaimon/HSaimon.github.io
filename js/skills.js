@@ -8,6 +8,7 @@ const DEVICON_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/
 const SKILLS = [
   { name: 'Java',        icon: 'java/java-original.svg',     lv: 'Avançado',      cls: 'av',  pct: 85 },
   { name: 'Python',      icon: 'python/python-original.svg', lv: 'Avançado',      cls: 'av',  pct: 85 },
+  { name: 'C#',          icon: 'csharp/csharp-original.svg', lv: 'Avançado',      cls: 'av',  pct: 80 },
   { name: 'GDScript',    icon: 'godot/godot-original.svg',   lv: 'Avançado',      cls: 'av',  pct: 80 },
   { name: 'MySQL',       icon: 'mysql/mysql-original.svg',   lv: 'Avançado',      cls: 'av',  pct: 85 },
   { name: 'Excel',       icon: 'https://api.iconify.design/vscode-icons/file-type-excel.svg', lv: 'Avançado', cls: 'av', pct: 80 },
@@ -38,7 +39,7 @@ export function renderSkills(rvObserver) {
   SKILLS.forEach((skill, i) => {
     const card = document.createElement('div');
     card.className = 'sk-card rv';
-    card.style.transitionDelay = `${i * 0}s`;
+    card.style.transitionDelay = `${i * 0.05}s`;
 
     const isExternal = skill.icon && skill.icon.startsWith('http');
     const imgSrc = isExternal ? skill.icon : `${DEVICON_BASE}${skill.icon}`;
