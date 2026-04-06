@@ -29,6 +29,25 @@
     transform-origin: top center; 
   }
 
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0.4rem; 
+    margin-bottom: 8vh; 
+    margin-right: 0.8rem; 
+  }
+
+  .stat {
+    padding: 0.8rem 0.3rem;
+  }
+  
+  .stat-num {
+    font-size: 1.4rem;
+  }
+  
+  .stat-label {
+    font-size: 0.6rem;
+  }
+
   .about-grid,
   .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
 

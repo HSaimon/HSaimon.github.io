@@ -151,9 +151,10 @@
 /* ====== STATS - CARDS E NÚMEROS ====== */
 .hero-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1.2rem;
   margin-top: 3.5rem;
+  margin-bottom: clamp(2rem, 5vh, 5rem); 
 }
 
 .stat {
