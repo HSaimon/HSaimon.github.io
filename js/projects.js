@@ -1,9 +1,7 @@
 /* ===========================
-   PROJECTS — Dual GitHub Loader & Curated Highlights
-   Filtros: Destaques (Top 10) | Todos | Por Linguagem
+   PROJECTS
    =========================== */
 
-// As contas onde vamos buscar os projetos, mas unificadas visualmente
 const USERS = ['HSaimon', 'H-Saimon'];
 
 // Exclui apenas os ficheiros README de perfil
@@ -11,9 +9,7 @@ const EXCLUDE = new Set(['HSaimon', 'H-Saimon']);
 
 const ICONS = ['⚙️','🖥️','📦','🔧','🌐','🎯','💡','🛠️','🔬','📱','🔗','🗃️','🎮','🐍','☕','📊','🤖','🏗️','🧩','✈️'];
 
-/* ──────────────────────────────────────────────────────────────
-   1. RANKING TOP 10 E DESCRIÇÕES PROFISSIONAIS
-   ────────────────────────────────────────────────────────────── */
+
 const HIGHLIGHT_RANKING = {
   'SENAI-SITE': 100,               // 1º
   'Labirinto_Esp32': 90,           // 2º
@@ -72,11 +68,9 @@ function langStyle(l) { return LANG_COLORS[l] || LANG_COLORS.default; }
 
 /* ── Sistema de Pontuação ── */
 function scoreRepo(r) {
-  // Se estiver no Top 10, ganha prioridade máxima baseada no ranking
   if (HIGHLIGHT_RANKING[r.name] !== undefined) {
     return 1000 + HIGHLIGHT_RANKING[r.name]; 
   }
-  // Repositórios normais
   return (r.stargazers_count * 3) + (r.forks_count * 1) +
     (new Date(r.updated_at) > new Date(Date.now() - 120*24*3600*1000) ? 3 : 0);
 }
@@ -95,7 +89,6 @@ function buildCard(repo, index) {
   const displayName = rawName.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
   const desc        = CURATED_DESC[rawName] || repo.description || 'Projeto disponível no GitHub.';
   
-  // Ajuste do Labirinto
   let lang = repo.language || '';
   if (rawName === 'Labirinto_Esp32') lang = 'C++';
 
@@ -159,9 +152,7 @@ function getLanguages(repos) {
   return [...s].sort();
 }
 
-/* ── Aplica filtro ── */
 function applyFilter(bar, grid) {
-  // Por padrão carrega 'destaques'
   const filterKey = bar.querySelector('[data-ft="lang"].active')?.dataset.lang || 'destaques';
   let filtered;
 
@@ -180,7 +171,7 @@ function applyFilter(bar, grid) {
   renderGrid(filtered, grid);
 }
 
-/* ── Constrói barra de filtro ── */
+/* ── Barra de filtro ── */
 function buildFilterBar(grid) {
   document.getElementById('projFilterBar')?.remove();
   const langs = getLanguages(allRepos);
@@ -207,7 +198,7 @@ function buildFilterBar(grid) {
         const ls = langStyle(key);
         btn.style.background  = ls.bg;
         btn.style.color       = ls.color;
-        btn.style.borderColor = ls.border;
+        btn.style.borderColor = ls.color;
       }
       applyFilter(bar, grid);
     });
@@ -218,7 +209,7 @@ function buildFilterBar(grid) {
   bar.appendChild(makeBtn(`⭐ Destaques`, 'destaques', true));
   bar.appendChild(makeBtn(`Todos (${allRepos.length})`, 'todos', false));
 
-  // Botões de Linguagem (sem exibir 'Embarcado' solto)
+  // Botões de Linguagem
   langs.forEach(lang => {
     const count = allRepos.filter(r => {
       let l = r.language;
@@ -242,7 +233,6 @@ async function fetchUserRepos(user) {
   return repos.filter(r => !EXCLUDE.has(r.name));
 }
 
-/* ── Deduplicação por nome ── */
 function dedupe(repos) {
   const map = new Map();
   repos.forEach(r => {
@@ -252,7 +242,6 @@ function dedupe(repos) {
   return [...map.values()];
 }
 
-/* ── Entry point ── */
 export async function loadProjects(observer) {
   rvObs = observer;
   const grid = document.getElementById('projGrid');

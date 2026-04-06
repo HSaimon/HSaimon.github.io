@@ -6,19 +6,16 @@ const STORAGE_KEY = 'hs-theme';
 const DARK  = 'dark';
 const LIGHT = 'light';
 
-/** Returns the current active theme. */
 function getTheme() {
   return document.documentElement.getAttribute('data-theme') || LIGHT;
 }
 
-/** Applies a theme and persists it. */
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem(STORAGE_KEY, theme);
   updateToggleIcon(theme);
 }
 
-/** Updates the button icon/label to reflect current state. */
 function updateToggleIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
@@ -48,7 +45,6 @@ const ICON_MOON = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18
 </svg>`;
 
 export function initThemeToggle() {
-  // Restore saved preference (or system preference)
   const saved = localStorage.getItem(STORAGE_KEY);
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const initial = saved || (prefersDark ? DARK : LIGHT);

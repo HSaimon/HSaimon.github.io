@@ -10,7 +10,7 @@ section { padding: 6rem 2rem; }
   align-items: center;
   gap: 0.4rem;
   color: #B8950A;
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -35,7 +35,7 @@ section { padding: 6rem 2rem; }
 
 .s-sub {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   max-width: 540px;
   line-height: 1.85;
 }
