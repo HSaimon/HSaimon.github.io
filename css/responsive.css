@@ -1,6 +1,3 @@
-/* ===========================
-   RESPONSIVE
-   =========================== */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -17,10 +14,8 @@
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
 
-  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-grid { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
-  .hero-desc, .hero-btns { margin-left: auto; margin-right: auto; }
-  .hero-btns { justify-content: center; }
 
   .about-grid,
   .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -30,10 +25,4 @@
   .ft-inner { flex-direction: column; text-align: center; }
 
   section { padding: 4rem 1.2rem; }
-}
-
-@media (max-width: 480px) {
-  .hero-stats { grid-template-columns: 1fr; }
-  .sk-grid { grid-template-columns: repeat(2, 1fr); }
-  .proj-grid { grid-template-columns: 1fr; }
 }
