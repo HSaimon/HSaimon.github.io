@@ -3,22 +3,37 @@
    =========================== */
 
 @media (max-width: 768px) {
+  .nav-logo, 
+  nav > div {
+    position: relative;
+    z-index: 101; 
+  }
+
   .nav-links {
     display: none;
     position: fixed;
-    inset: 0;
-    top: 60px;
-    background: var(--nav-mobile-bg);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg); 
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    z-index: 99; 
+    padding: 0;
+    margin: 0;
   }
 
-  .nav-links.open { display: flex; }
+  .nav-links.open { 
+    display: flex; 
+  }
 
-  .hamburger { display: flex; }
+  .hamburger { 
+    display: flex; 
+  }
   
   .hero-grid { grid-template-columns: 1fr; }
 
@@ -34,25 +49,17 @@
     gap: 0.4rem; 
     margin-bottom: 8vh; 
     margin-right: 0.8rem; 
+    position: relative;
+    z-index: 1; 
   }
 
-  .stat {
-    padding: 0.8rem 0.3rem;
-  }
-  
-  .stat-num {
-    font-size: 1.4rem;
-  }
-  
-  .stat-label {
-    font-size: 0.6rem;
-  }
+  .stat { padding: 0.8rem 0.3rem; }
+  .stat-num { font-size: 1.4rem; }
+  .stat-label { font-size: 0.6rem; }
 
   .about-grid,
   .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
-
   .proj-head { flex-direction: column; align-items: flex-start; }
-
   .ft-inner { flex-direction: column; text-align: center; }
 
   section { padding: 4rem 1.2rem; }
