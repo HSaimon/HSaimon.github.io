@@ -1,64 +1,38 @@
 /* ===========================
-   RESPONSIVE 
+   RESPONSIVE (GERAL)
    =========================== */
 
+   /* --- Menu Mobile Tela Cheia --- */
 @media (max-width: 768px) {
-  .nav-logo, 
-  nav > div {
-    position: relative;
-    z-index: 101; 
-  }
-
   .nav-links {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     background: var(--bg); 
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    font-size: 1.4rem;
-    z-index: 99; 
-    padding: 0;
-    margin: 0;
+    align-items: center; justify-content: center;
+    gap: 2.5rem; font-size: 1.4rem;
+    z-index: 999;
+    padding: 0; margin: 0;
   }
 
-  .nav-links.open { 
-    display: flex; 
-  }
-
-  .hamburger { 
-    display: flex; 
-  }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
   
-  .hero-grid { grid-template-columns: 1fr; }
+  /* --- Grid Geral --- */
+  .hero-grid { 
+    grid-template-columns: 1fr; 
+    width: 100% !important; 
+  }
 
   .hero-visual { 
-    display: flex; 
-    margin-top: 2rem; 
-    transform: scale(0.95); 
-    transform-origin: top center; 
+    display: flex; margin-top: 2rem; 
+    transform: scale(0.95); transform-origin: top center; 
   }
 
-  .hero-stats {
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 0.4rem; 
-    margin-bottom: 8vh; 
-    margin-right: 0.8rem; 
-    position: relative;
-    z-index: 1; 
-  }
-
-  .stat { padding: 0.8rem 0.3rem; }
-  .stat-num { font-size: 1.4rem; }
-  .stat-label { font-size: 0.6rem; }
-
-  .about-grid,
-  .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
+  /* --- Ajustes Gerais de Seções --- */
+  .about-grid, .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
   .proj-head { flex-direction: column; align-items: flex-start; }
   .ft-inner { flex-direction: column; text-align: center; }
 

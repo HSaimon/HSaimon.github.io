@@ -4,12 +4,19 @@
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 1000;
+  z-index: 1000; /* Z-index base do nav */
   padding: 1.2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: background 0.4s, backdrop-filter 0.4s;
+}
+
+/* Garante que o logo e botões fiquem acima do menu mobile de tela cheia */
+.nav-logo, 
+nav > div {
+  position: relative;
+  z-index: 1001; 
 }
 
 nav.scrolled {

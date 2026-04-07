@@ -321,20 +321,70 @@
 
 .adv-badge:hover::after { animation-play-state: paused; }
 
+/* ===========================
+   HERO RESPONSIVE (MOBILE)
+   =========================== */
 @media (max-width: 768px) {
   #hero {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
   }
   
-  .hero-desc {
-    padding-right: 1rem !important; 
+  /* Remove as margens direitas que causavam o desalinhamento visual */
+  .hero-desc,
+  .hero-name {
+    padding-right: 0 !important; 
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
 
   .hero-name {
-    padding-right: 1.5rem !important; 
     font-size: clamp(1.5rem, 8vw, 3.5rem) !important; 
+  }
+
+  /* --- Layout dos Botões --- */
+  .hero-btns {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100% !important; 
+    margin: 0 0 2rem 0 !important; 
+    padding: 0 !important;
+  }
+
+  .hero-btns .btn-primary {
+    grid-column: 1 / -1; 
+    display: flex !important;
+    justify-content: center !important; 
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-btns .btn-secondary {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0.8rem 0.5rem !important; 
+    box-sizing: border-box !important;
+    border: 1px solid var(--accent2) !important;
+  }
+
+  /* --- Estatísticas Estendidas --- */
+  .hero-stats {
+    display: flex !important;
+    flex-direction: column; 
+    gap: 0.8rem; 
+    width: 100% !important; 
+    margin: 0 0 8vh 0 !important; 
+    padding: 0 !important;
+  }
+
+  .stat { 
+    width: 100% !important;
+    padding: 1.2rem 0.5rem !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    box-sizing: border-box !important;
   }
 }
