@@ -30,3 +30,15 @@
 }
 
 [data-theme="dark"] .gh-icon { filter: invert(1); }
+
+img[alt="LinkedIn"] {
+  background-color: #FFFFFF;
+  border-radius: 4px; 
+}
+
+img[alt="Email"] {
+  background-color: #f5dede;
+  padding: 4px;               
+  border-radius: 8px;         
+  box-sizing: border-box;     
+}

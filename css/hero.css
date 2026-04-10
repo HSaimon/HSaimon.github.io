@@ -137,12 +137,13 @@
   font-weight: 600;
   font-size: 0.875rem;
   text-decoration: none;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid #67682b; 
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   transition: border-color 0.2s, background 0.2s;
 }
+
 .btn-secondary:hover {
   border-color: var(--accent2);
   background: var(--accent-glow);
@@ -167,7 +168,7 @@
 .stat-num {
   font-family: var(--font-head);
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   margin-bottom: 0.25rem;
   display: flex;

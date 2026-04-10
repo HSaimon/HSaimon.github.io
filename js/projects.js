@@ -4,49 +4,147 @@
 
 const USERS = ['HSaimon', 'H-Saimon'];
 
-// Exclui apenas os ficheiros README de perfil
 const EXCLUDE = new Set(['HSaimon', 'H-Saimon']);
 
 const ICONS = ['⚙️','🖥️','📦','🔧','🌐','🎯','💡','🛠️','🔬','📱','🔗','🗃️','🎮','🐍','☕','📊','🤖','🏗️','🧩','✈️'];
 
+/* Ícone específico por projeto — substitui o fallback genérico por índice */
+const PROJECT_ICONS = {
+  'SistemaDeVendas':         '🛒',
+  'SENAI-SITE':              '🌐',
+  'PUSHON-BackEnd':          '⚙️',
+  'Labirinto_Esp32':         '🤖',
+  'PUSHON-FrontEnd':         '📱',
+  'FrontAppFitness':         '💪',
+  'Jogo-da-Dengue_SENAI':   '🎮',
+  'HSaimon.github.io':       '🖥️',
+  'Oficina-Análise-de-Dados':'📊',
+  'Cadastro_de_produto':     '📦',
+  'Demo':                    '☕',
+  'Proj3':                   '🌐',
+  'Calculo_Area':            '🧮',
+  'Teste':                   '🔬',
+};
 
+/* ── Top 10 do ranking definitivo (notas de 8.7 a 4.8) ──
+   Valor maior = aparece primeiro nos Destaques.           */
 const HIGHLIGHT_RANKING = {
-  'SENAI-SITE': 100,               // 1º
-  'Labirinto_Esp32': 90,           // 2º
-  'FrontAppFitness': 80,           // 3º
-  'Jogo-da-Dengue_SENAI': 70,      // 4º
-  'HSaimon.github.io': 60,         // 5º
-  'Oficina-Análise-de-Dados': 50,  // 6º
-  'Cadastro_de_produto': 40,       // 7º
-  'Demo': 30,                      // 8º
-  'Proj3': 20,                     // 9º
-  'Calculo_Area': 10,              // 10º
-  'Teste': 10                      // Agrupado com o 10º
+  'SistemaDeVendas':         100, // 1º — nota 8.7
+  'SENAI-SITE':               95, // 2º — nota 8.5
+  'PUSHON-BackEnd':           90, // 3º — nota 8.3
+  'Labirinto_Esp32':          85, // 4º — nota 8.1
+  'PUSHON-FrontEnd':          80, // 5º — nota 7.9
+  'FrontAppFitness':          75, // 6º — nota 7.6
+  'Jogo-da-Dengue_SENAI':    70, // 7º — nota 7.2
+  'HSaimon.github.io':        65, // 8º — nota 6.5
+  'Oficina-Análise-de-Dados': 60, // 9º — nota 5.8
+  'Cadastro_de_produto':      55, // 10º — nota 4.8
 };
 
 const CURATED_DESC = {
-  'SENAI-SITE': 'Projeto de maior peso técnico do portfólio. TypeScript com framework web moderno. Participação em código tipado e colaborativo, elevando o nível para padrões de mercado.',
-  'Labirinto_Esp32': 'O projeto mais inovador. Firmware em C/C++ para ESP32 controlando hardware físico. Um diferencial raro que demonstra domínio em IoT e sistemas embarcados.',
-  'FrontAppFitness': 'Aplicativo de produto real com usuário final. Frontend JavaScript desenvolvido em colaboração, focado em fitness, com contexto altamente profissional.',
-  'Jogo-da-Dengue_SENAI': 'Jogo educativo 2D com Godot Engine e GDScript. Temática de saúde pública que demonstra aprendizado autodirigido além do currículo web tradicional.',
-  'HSaimon.github.io': 'A vitrine profissional. Portfólio focado em estruturação HTML/CSS limpa, sinalizando alta consciência sobre posicionamento de mercado.',
-  'Oficina-Análise-de-Dados': 'Exploração de Análise de Dados com Python. Demonstra flexibilidade e exposição a ferramentas de altíssima demanda, além da programação web.',
-  'Cadastro_de_produto': 'CRUD clássico em PHP. A base fundamental do backend, demonstrando a compreensão perfeita do ciclo: formulário → servidor → banco de dados.',
-  'Demo': 'Exercícios fundamentais de Java. Documenta a base sólida em Programação Orientada a Objetos (POO), paradigma central de arquiteturas modernas.',
-  'Proj3': 'O ponto de partida no ecossistema web com HTML e CSS. Um marco histórico da base de criação de layouts e estruturação de páginas.',
-  'Calculo_Area': 'Primeiríssimos experimentos lógicos e matemáticos em Java. Seu maior valor é narrativo: ilustra perfeitamente a evolução técnica até as stacks atuais.',
-  'Teste': 'Repositório inicial para testes de lógica de programação.'
+  'SistemaDeVendas':
+    'API REST completa em Java 17 + Spring Boot 3.4. Sistema de vendas com 10 entidades, fidelidade em 5 categorias calculadas automaticamente, controle de estoque, pedidos, pagamentos e autenticação Spring Security.',
+  'SENAI-SITE':
+    'Projeto de maior peso técnico do portfólio. TypeScript com framework web moderno. Participação em código tipado e colaborativo, elevando o nível para padrões de mercado.',
+  'PUSHON-BackEnd':
+    'Backend robusto em Java + Spring Boot com JWT multi-role. Sistema de apostas fitness com ranking automático por check-ins e premiação automática para os 3 primeiros colocados.',
+  'Labirinto_Esp32':
+    'O projeto mais inovador. Firmware em C/C++ para ESP32 controlando hardware físico. Um diferencial raro que demonstra domínio em IoT e sistemas embarcados.',
+  'PUSHON-FrontEnd':
+    'App mobile cross-platform em React Native/Expo com 14 telas, autenticação JWT, upload via Cloudinary, geolocalização e sistema completo de grupos e desafios fitness.',
+  'FrontAppFitness':
+    'Aplicativo de produto real com usuário final. Frontend JavaScript desenvolvido em colaboração, focado em fitness, com contexto altamente profissional.',
+  'Jogo-da-Dengue_SENAI':
+    'Jogo educativo 2D com Godot Engine e GDScript. Temática de saúde pública que demonstra aprendizado autodirigido além do currículo web tradicional.',
+  'HSaimon.github.io':
+    'A vitrine profissional. Portfólio focado em estruturação HTML/CSS limpa, sinalizando alta consciência sobre posicionamento de mercado.',
+  'Oficina-Análise-de-Dados':
+    'Exploração de Análise de Dados com Python. Demonstra flexibilidade e exposição a ferramentas de altíssima demanda, além da programação web.',
+  'Cadastro_de_produto':
+    'CRUD clássico em PHP. A base fundamental do backend, demonstrando a compreensão perfeita do ciclo: formulário → servidor → banco de dados.',
+  'Demo':
+    'Exercícios fundamentais de Java. Documenta a base sólida em Programação Orientada a Objetos (POO), paradigma central de arquiteturas modernas.',
+  'Proj3':
+    'O ponto de partida no ecossistema web com HTML e CSS. Um marco histórico da base de criação de layouts e estruturação de páginas.',
+  'Calculo_Area':
+    'Primeiríssimos experimentos lógicos e matemáticos em Java. Seu maior valor é narrativo: ilustra perfeitamente a evolução técnica até as stacks atuais.',
+  'Teste':
+    'Repositório inicial para testes de lógica de programação.',
 };
 
-/* Repositórios colaborativos e fixos para garantir que os Top 10 nunca faltem */
+/* Repositórios externos/colaborativos garantidos no pool.
+   Incluem os top-10 que não aparecem nas contas HSaimon / H-Saimon. */
 const EXTERNAL_REPOS = [
-  { name:'SENAI-SITE', language:'TypeScript', html_url:'https://github.com/dudurtg2/SENAI-SITE', stargazers_count:0, forks_count:0, topics:['colaboração', 'framework'], updated_at:new Date().toISOString() },
-  { name:'FrontAppFitness', language:'JavaScript', html_url:'https://github.com/msantt/FrontAppFitness', stargazers_count:0, forks_count:0, topics:['produto-real'], updated_at:new Date().toISOString() },
-  { name:'Oficina-Análise-de-Dados', language:'Python', html_url:'https://github.com/H-Saimon/Oficina-Análise-de-Dados', stargazers_count:0, forks_count:0, topics:['dados'], updated_at:new Date().toISOString() },
-  { name:'Cadastro_de_produto', language:'PHP', html_url:'https://github.com/H-Saimon/Cadastro_de_produto', stargazers_count:0, forks_count:0, topics:['crud'], updated_at:new Date().toISOString() },
-  { name:'Demo', language:'Java', html_url:'https://github.com/H-Saimon/Demo', stargazers_count:0, forks_count:0, topics:['poo'], updated_at:new Date().toISOString() },
-  { name:'Proj3', language:'HTML', html_url:'https://github.com/H-Saimon/Proj3', stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() },
-  { name:'Calculo_Area', language:'Java', html_url:'https://github.com/H-Saimon/Calculo_Area', stargazers_count:0, forks_count:0, topics:[], updated_at:new Date().toISOString() }
+  {
+    name: 'SistemaDeVendas', language: 'Java',
+    html_url: 'https://github.com/msantt/SistemaDeVendas',
+    stargazers_count: 1, forks_count: 0,
+    topics: ['spring-boot', 'java', 'api-rest'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'SENAI-SITE', language: 'TypeScript',
+    html_url: 'https://github.com/dudurtg2/SENAI-SITE',
+    stargazers_count: 0, forks_count: 0,
+    topics: ['colaboração', 'typescript'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'PUSHON-BackEnd', language: 'Java',
+    html_url: 'https://github.com/msantt/PUSHON-BackEnd',
+    stargazers_count: 1, forks_count: 0,
+    topics: ['spring-boot', 'jwt', 'api-rest'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'PUSHON-FrontEnd', language: 'JavaScript',
+    html_url: 'https://github.com/msantt/PUSHON-FrontEnd',
+    stargazers_count: 1, forks_count: 0,
+    topics: ['react-native', 'expo', 'mobile'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'FrontAppFitness', language: 'JavaScript',
+    html_url: 'https://github.com/msantt/FrontAppFitness',
+    stargazers_count: 0, forks_count: 0,
+    topics: ['produto-real'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'Oficina-Análise-de-Dados', language: 'Python',
+    html_url: 'https://github.com/H-Saimon/Oficina-An-lise-de-Dados',
+    stargazers_count: 0, forks_count: 0,
+    topics: ['dados', 'python'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'Cadastro_de_produto', language: 'PHP',
+    html_url: 'https://github.com/H-Saimon/Cadastro_de_produto',
+    stargazers_count: 0, forks_count: 0,
+    topics: ['crud', 'php'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'Demo', language: 'Java',
+    html_url: 'https://github.com/H-Saimon/Demo',
+    stargazers_count: 0, forks_count: 0,
+    topics: ['poo', 'java'],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'Proj3', language: 'HTML',
+    html_url: 'https://github.com/H-Saimon/Proj3',
+    stargazers_count: 0, forks_count: 0,
+    topics: [],
+    updated_at: new Date().toISOString(),
+  },
+  {
+    name: 'Calculo_Area', language: 'Java',
+    html_url: 'https://github.com/H-Saimon/Calculo_Area',
+    stargazers_count: 0, forks_count: 0,
+    topics: [],
+    updated_at: new Date().toISOString(),
+  },
 ];
 
 const GH_ICON  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.31.468-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.51 11.51 0 0112 5.8a11.51 11.51 0 013.004.404c2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.604-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 21.795 24 17.298 24 12 24 5.37 18.63 0 12 0z"/></svg>`;
@@ -69,7 +167,7 @@ function langStyle(l) { return LANG_COLORS[l] || LANG_COLORS.default; }
 /* ── Sistema de Pontuação ── */
 function scoreRepo(r) {
   if (HIGHLIGHT_RANKING[r.name] !== undefined) {
-    return 1000 + HIGHLIGHT_RANKING[r.name]; 
+    return 1000 + HIGHLIGHT_RANKING[r.name];
   }
   return (r.stargazers_count * 3) + (r.forks_count * 1) +
     (new Date(r.updated_at) > new Date(Date.now() - 120*24*3600*1000) ? 3 : 0);
@@ -88,7 +186,7 @@ function buildCard(repo, index) {
   const rawName     = repo.name || '';
   const displayName = rawName.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
   const desc        = CURATED_DESC[rawName] || repo.description || 'Projeto disponível no GitHub.';
-  
+
   let lang = repo.language || '';
   if (rawName === 'Labirinto_Esp32') lang = 'C++';
 
@@ -97,6 +195,9 @@ function buildCard(repo, index) {
   const demo        = repo.homepage || '';
   const stars       = repo.stargazers_count || 0;
   const forks       = repo.forks_count || 0;
+
+  /* Ícone: usa mapeamento específico quando disponível */
+  const icon = PROJECT_ICONS[rawName] || ICONS[index % ICONS.length];
 
   const ls      = langStyle(lang);
   const langTag = lang
@@ -111,7 +212,7 @@ function buildCard(repo, index) {
   card.innerHTML = `
     ${hlBadge}
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem">
-      <div class="proj-icon">${ICONS[index % ICONS.length]}</div>
+      <div class="proj-icon">${icon}</div>
     </div>
     <div class="proj-name">${displayName}</div>
     <div class="proj-desc">${desc}</div>
@@ -175,6 +276,7 @@ function applyFilter(bar, grid) {
 function buildFilterBar(grid) {
   document.getElementById('projFilterBar')?.remove();
   const langs = getLanguages(allRepos);
+  const hlCount = Object.keys(HIGHLIGHT_RANKING).length;
 
   const bar = document.createElement('div');
   bar.id = 'projFilterBar';
@@ -193,7 +295,7 @@ function buildFilterBar(grid) {
         b.style.background = b.style.color = b.style.borderColor = '';
       });
       btn.classList.add('active');
-      
+
       if (key !== 'destaques' && key !== 'todos') {
         const ls = langStyle(key);
         btn.style.background  = ls.bg;
@@ -205,21 +307,16 @@ function buildFilterBar(grid) {
     return btn;
   };
 
-  // Botões Base Destaque e Todos
-  bar.appendChild(makeBtn(`⭐ Destaques`, 'destaques', true));
+  bar.appendChild(makeBtn(`⭐ Destaques (${hlCount})`, 'destaques', true));
   bar.appendChild(makeBtn(`Todos (${allRepos.length})`, 'todos', false));
 
-  // Botões de Linguagem
   langs.forEach(lang => {
     const count = allRepos.filter(r => {
       let l = r.language;
       if (r.name === 'Labirinto_Esp32') l = 'C++';
       return l === lang;
     }).length;
-    
-    if (count > 0) {
-      bar.appendChild(makeBtn(`${lang} (${count})`, lang, false));
-    }
+    if (count > 0) bar.appendChild(makeBtn(`${lang} (${count})`, lang, false));
   });
 
   grid.parentElement.insertBefore(bar, grid);
@@ -248,22 +345,22 @@ export async function loadProjects(observer) {
 
   try {
     const results = await Promise.allSettled(USERS.map(fetchUserRepos));
-    let combined = [...EXTERNAL_REPOS]; 
-    
+    let combined = [...EXTERNAL_REPOS];
+
     results.forEach(r => { if (r.status === 'fulfilled') combined.push(...r.value); });
     if (!combined.length) throw new Error('Nenhum repo carregado');
 
     allRepos = dedupe(combined).sort((a, b) => scoreRepo(b) - scoreRepo(a));
     grid.innerHTML = '';
-    
+
     buildFilterBar(grid);
-    applyFilter(document.getElementById('projFilterBar'), grid); 
+    applyFilter(document.getElementById('projFilterBar'), grid);
 
   } catch (err) {
     console.warn('GitHub fetch falhou, usando apenas os projetos fixos.', err);
     allRepos = [...EXTERNAL_REPOS];
     grid.innerHTML = '';
-    
+
     buildFilterBar(grid);
     applyFilter(document.getElementById('projFilterBar'), grid);
   }
