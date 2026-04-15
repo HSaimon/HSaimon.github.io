@@ -272,7 +272,7 @@
 
 /*Linguagens Avançadas */
 .adv-badge { width: 43px; height: 43px; border-width: 2px; border-style: solid; }
-.adv-badge img { width: 32px; height: 32px; }
+.adv-badge img { width: 32px; height: 32        px; }
 
 /*Linguagens Intermediárias */
 .int-badge { width: 20px; height: 20px; border-width: 1.5px; border-style: solid; }
